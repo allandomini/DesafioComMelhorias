@@ -1,0 +1,12 @@
+<main>
+  <img src="../../../assets/logo_main.svg" width="250" alt="" />
+  <h3>Sistema CRM</h3>
+  <form (ngSubmit)="onSubmit()">
+    Usuário:<br />
+    <input [(ngModel)]="usuario" name="usuario" /><br />
+    Senha:<br />
+    <input [(ngModel)]="senha" name="senha" type="password" /><br />
+    <input type="submit" value="Entrar" class="btn-primary btn" />
+  </form>
+  <p>{{ resultado }}</p>
+</main>

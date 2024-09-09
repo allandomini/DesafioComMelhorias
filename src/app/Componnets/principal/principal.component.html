@@ -1,0 +1,301 @@
+<!--HEADER-->
+<header class="d-flex flex-wrap justify-content-start" style="padding: 10px">
+  <img src="../../../assets/logo_main.svg" width="250" alt="" />
+  <h1 style="flex: 0 0 auto; width: 300px">SISTEMA CRM</h1>
+  <div
+    style="flex: 1; display: flex; flex-wrap: nowrap; justify-content: flex-end"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="36"
+      height="36"
+      fill="currentColor"
+      class="bi bi-person-circle"
+      viewBox="0 0 16 16"
+    >
+      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+      <path
+        fill-rule="evenodd"
+        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+      />
+    </svg>
+  </div>
+</header>
+<div>
+  <div class="row align-items-start">
+    <!--SIDEBAR-->
+    <div id="side_nav">
+      <div class="header-box">
+        <button
+          [ngClass]="{ 'btn-primary': ClientView, 'btn-DIS': !ClientView }"
+          (click)="mostrarClientes()"
+          class="btn"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="46"
+            height="46"
+            fill="currentColor"
+            class="bi bi-person-fill-check"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+            />
+            <path
+              d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"
+            />
+          </svg>
+          CLIENTES
+        </button>
+        <button
+          [ngClass]="{ 'btn-primary': prospectView, 'btn-DIS': !prospectView }"
+          class="btn"
+          (click)="mostrarProspects()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="45"
+            height="45"
+            fill="currentColor"
+            class="bi bi-person-fill-exclamation"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0m-9 8c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"
+            />
+            <path
+              d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0m-3.5-2a.5.5 0 0 0-.5.5v1.5a.5.5 0 0 0 1 0V11a.5.5 0 0 0-.5-.5m0 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"
+            />
+          </svg>
+          PROSPECT
+        </button>
+        <button
+          [ngClass]="{
+            'btn-primary': DiagnosticTable,
+            'btn-DIS': !DiagnosticTable
+          }"
+          class="btn"
+          (click)="mostrarDiagnostico()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="46"
+            height="46"
+            fill="currentColor"
+            class="bi bi-bar-chart-line-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"
+            />
+          </svg>
+          DIAGNOSTICO
+        </button>
+      </div>
+    </div>
+
+    <div class="flex-wrap justify-content-start content">
+      <!-- MODAL -->
+      <div *ngIf="CadastroProspect" class="Modal-cadastro">
+        <form>
+          <label class="form-label">Nome:</label>
+          <input
+            type="text"
+            placeholder="Seu nome"
+            class="form-control"
+            name="nome"
+            [(ngModel)]="prospect.nome"
+          />
+          <label class="form-label">Documento:</label>
+          <input
+            type="text"
+            placeholder="CPF/CNPJ"
+            class="form-control"
+            name="numeroDocumento"
+            [(ngModel)]="prospect.numeroDocumento"
+          />
+          <label class="form-label">Data Nascimento:</label>
+          <input
+            type="date"
+            placeholder="dd/mm/aaaa"
+            class="form-control"
+            name="dataNascimento"
+            [(ngModel)]="prospect.dataNascimento"
+          />
+          <label class="form-label">Cidade:</label>
+          <input
+            type="text"
+            placeholder="nome da cidade"
+            class="form-control"
+            name="cidadeResidencia"
+            [(ngModel)]="prospect.cidadeResidencia"
+          />
+          <input
+            type="button"
+            value="Cancelar"
+            *ngIf="btnCadastro"
+            class="btn btn-DIS"
+            (click)="cancelar()"
+          />
+          <input
+            type="button"
+            value="Cadastrar"
+            *ngIf="btnCadastro"
+            class="btn btn-primary"
+            (click)="cadastrar()"
+          />
+          <input
+            type="button"
+            value="Alterar"
+            *ngIf="!btnCadastro"
+            class="btn btn-danger"
+            (click)="editar()"
+          />
+          <input
+            type="button"
+            value="Remover"
+            *ngIf="!btnCadastro"
+            class="btn btn-secondary"
+            style="background-color: 22eE2E"
+            (click)="remover()"
+          />
+          <input
+            type="button"
+            value="Cancelar"
+            *ngIf="!btnCadastro"
+            class="btn"
+            (click)="cancelar()"
+          />
+        </form>
+      </div>
+      <!--Barra de Pesquisa-->
+      <div style="display: flex">
+        <div class="Search-table">
+          <input
+            type="text"
+            placeholder="Buscar por documento ou nome"
+            [(ngModel)]="searchTerm"
+            (input)="filtrarProspects()"
+          />
+        </div>
+      </div>
+      <!--Inicio do content-->
+      <div></div>
+      <div style="display: flex">
+        <h2 style="width: 100px !important">Gerenciamento</h2>
+        <div style="display: flex; padding-left: 80%">
+          <button type="button" class="btn btn-primary" (click)="AbrirModal()">
+            ADD
+          </button>
+        </div>
+      </div>
+      <!-- TABELA Prospect HEAD-->
+      <div *ngIf="prospectView">
+        <div style="display: flex">
+          <h3 class="titulo-table">Prospect</h3>
+          <div style="display: flex; padding-left: 80%"></div>
+        </div>
+        <!-- TABELA Prospect Body-->
+        <table class="table" *ngIf="tabela">
+          <tbody>
+            <ng-container *ngFor="let p of prospects; index as i">
+              <tr *ngIf="p.tipo == 'Prospect'" class="prospect">
+                <td>{{ i + 1 }}</td>
+                <td>{{ p.nome }}</td>
+                <td>{{ p.numeroDocumento }}</td>
+                <td>{{ p.tipo }}</td>
+                <td>{{ p.cidadeResidencia }}</td>
+                <td>
+                  <button class="btn btn-sucess" (click)="selecionarClient(i)">
+                    EDIT
+                  </button>
+                  <button class="btn btn-succes btn-cli" (click)="mudar(i)">
+                    MUDAR
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <!-- TABELA Cliente HEAD-->
+      <div *ngIf="ClientView">
+        <div style="display: flex">
+          <h3 class="titulo-table">Clientes</h3>
+          <div style="display: flex; padding-left: 80%"></div>
+        </div>
+        <!-- TABELA Cliente Body-->
+        <table class="table" *ngIf="tabela">
+          <tbody>
+            <ng-container *ngFor="let p of prospects; index as i">
+              <tr *ngIf="p.tipo == 'Cliente'" class="prospect">
+                <td>{{ i + 1 }}</td>
+                <td>{{ p.nome }}</td>
+                <td>{{ p.numeroDocumento }}</td>
+                <td>{{ p.tipo }}</td>
+                <td>{{ p.cidadeResidencia }}</td>
+                <td>
+                  {{ p.dataHoraConversao }}
+                </td>
+                <td>
+                  <button class="btn btn-sucess" (click)="selecionarClient(i)">
+                    EDIT
+                  </button>
+                  <button class="btn btn-succes btn-cli" (click)="mudar(i)">
+                    MUDAR
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <!--DIAGNOSTICO-->
+      <div *ngIf="DiagnosticTable">
+        <app-prospect-list></app-prospect-list>
+      </div>
+      <!--TABELA DE PESQUISA-->
+      <div *ngIf="searchView">
+        <table *ngIf="tabela" class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Documento</th>
+              <th>tipo</th>
+              <th>cidadeResidencia</th>
+              <th>Data de conversao</th>
+              <th>dataNascimento</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let p of filteredProspects; let i = index"
+              class="prospect"
+            >
+              <td>{{ i + 1 }}</td>
+              <td>{{ p.nome }}</td>
+              <td>{{ p.numeroDocumento }}</td>
+              <td>{{ p.tipo }}</td>
+              <td>{{ p.cidadeResidencia }}</td>
+              <td>
+                {{ p.dataHoraConversao }}
+              </td>
+              <td>{{ p.dataNascimento }}</td>
+              <td>
+                <button class="btn btn-sucess" (click)="selecionarClient(i)">
+                  EDIT
+                </button>
+                <button class="btn btn-succes btn-cli" (click)="mudar(i)">
+                  MUDAR
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

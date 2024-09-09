@@ -1,0 +1,31 @@
+/* prospect-list.component.scss */
+
+.chart-container {
+  width: 90%;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.chart-bar {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chart-bar-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.bar-label {
+  width: 120px; /* largura fixa para rótulos */
+  font-weight: bold;
+}
+
+.bar-value {
+  flex-grow: 1;
+  background-color: red; /* cor das barras */
+  height: 20px;
+  border-radius: 10px; /* para criar uma aparência arredondada */
+}

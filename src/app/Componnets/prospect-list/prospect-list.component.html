@@ -1,0 +1,14 @@
+<!-- prospect-list.component.html -->
+
+<div class="chart-container">
+  <ul class="chart-bar">
+    <li *ngFor="let cidade of cidadesOrdenadas" class="chart-bar-item">
+      <span class="bar-label">{{ cidade.cidade }}:</span>
+      <span
+        class="bar-value"
+        [style.width.%]="(cidade.quantidade / maxValue) * 100"
+      ></span>
+      <span>{{ cidade.quantidade }} prospects</span>
+    </li>
+  </ul>
+</div>
